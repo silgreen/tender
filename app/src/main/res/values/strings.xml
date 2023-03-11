@@ -6,4 +6,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="registrati">Registrati</string>
+    <string name="non_sei_registrato">Non sei registrato?</string>
+    <string name="registrati_label">Registrati</string>
 </resources>

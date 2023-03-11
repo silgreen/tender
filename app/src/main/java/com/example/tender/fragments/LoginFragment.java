@@ -5,7 +5,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.SavedStateHandle;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.tender.R;
 
-public class loginFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -27,14 +31,21 @@ public class loginFragment extends Fragment {
         view.findViewById(R.id.loginButton).setOnClickListener(view1 -> {
             String usernameString = usernameEditText.getText().toString();
             String passwordString = passwordEditText.getText().toString();
-            String responseLogin; //attesa risposta da login
-            if(responseLogin.equals("OK")) {
+            //attesa risposta da login per ora usiamo i campi direttamente
+            if(!usernameString.isEmpty() && !passwordString.isEmpty()) {
                 SharedPreferences.Editor editor = view.getContext().getSharedPreferences("info", Context.MODE_PRIVATE).edit();
                 editor.putBoolean("logged",true);
                 editor.apply();
-                //changeFragment to Homepage
+                Navigation.findNavController(view).popBackStack(R.id.homeFragment,false);
+
             } else {
-                Toast.makeText(view.getContext(), responseLogin, Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Username o password errati", Toast.LENGTH_SHORT).show();
+            }
+        });
+        view.findViewById(R.id.registratiLabel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.registerFragment);
             }
         });
         return view;
