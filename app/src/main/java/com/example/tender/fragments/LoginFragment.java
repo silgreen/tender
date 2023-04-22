@@ -36,8 +36,7 @@ public class LoginFragment extends Fragment {
                 SharedPreferences.Editor editor = view.getContext().getSharedPreferences("info", Context.MODE_PRIVATE).edit();
                 editor.putBoolean("logged",true);
                 editor.apply();
-                Navigation.findNavController(view).popBackStack(R.id.homeFragment,false);
-
+                Navigation.findNavController(view).navigate(R.id.homeFragment,null);
             } else {
                 Toast.makeText(view.getContext(), "Username o password errati", Toast.LENGTH_SHORT).show();
             }

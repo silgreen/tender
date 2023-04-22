@@ -1,5 +1,6 @@
 package com.example.tender.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Drink {
@@ -7,6 +8,12 @@ public class Drink {
     private String nomeDrink;
     private String descrizione;
     private List<Ingredients> ingredientsList;
+
+    public Drink(String nomeDrink) {
+        this.nomeDrink = nomeDrink;
+        ingredientsList = new ArrayList<>();
+        ingredientsList.add(new Ingredients("ingrediente strano"));
+    }
 
     public List<Ingredients> getIngredientsList() {
         return ingredientsList;
