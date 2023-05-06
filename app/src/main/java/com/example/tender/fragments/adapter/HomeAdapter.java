@@ -45,7 +45,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             super(itemView);
             nomeDrink = itemView.findViewById(R.id.nomeDrink);
             imageViewDrink = itemView.findViewById(R.id.imageView);
-            descrizioneDrink = itemView.findViewById(R.id.descrizione);
+            descrizioneDrink = itemView.findViewById(R.id.nome_ingrediente);
             addDrinkButton = itemView.findViewById(R.id.floatingActionButton);
         }
 
