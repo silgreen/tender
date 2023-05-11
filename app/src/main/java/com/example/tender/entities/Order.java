@@ -21,4 +21,14 @@ public class Order {
     public User getUser() {
         return user;
     }
+
+    //modifiche ale
+    public double getTotale(){
+        double totale = 0;
+        for (Drink d : drinkList) {
+            totale+=d.getCosto();
+        }
+        return totale;
+    }
+    //fine modifiche
 }

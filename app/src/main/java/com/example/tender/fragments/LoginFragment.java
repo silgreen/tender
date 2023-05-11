@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tender.R;
+import com.example.tender.communication.SocketClient;
+import com.example.tender.entities.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class LoginFragment extends Fragment {
 
@@ -28,15 +31,21 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login,container,false);
         EditText usernameEditText = view.findViewById(R.id.usernameEditText);
         EditText passwordEditText = view.findViewById(R.id.passwordEditText);
+        SocketClient socketClient = new SocketClient(getContext());
+        int[] flag = new int[1];
         view.findViewById(R.id.loginButton).setOnClickListener(view1 -> {
             String usernameString = usernameEditText.getText().toString();
             String passwordString = passwordEditText.getText().toString();
             //attesa risposta da login per ora usiamo i campi direttamente
-            if(!usernameString.isEmpty() && !passwordString.isEmpty()) {
+            User user = new User();
+            user.setUsername(usernameString);
+            user.setPassword(passwordString);
+            socketClient.startLogin(user,flag);
+            if(!usernameString.isEmpty() && !passwordString.isEmpty() && flag[0]==1) {
                 SharedPreferences.Editor editor = view.getContext().getSharedPreferences("info", Context.MODE_PRIVATE).edit();
                 editor.putBoolean("logged",true);
                 editor.apply();
-                Navigation.findNavController(view).popBackStack(R.id.homeFragment,false);
+                Navigation.findNavController(view).navigate(R.id.navigation_home);
 
             } else {
                 Toast.makeText(view.getContext(), "Username o password errati", Toast.LENGTH_SHORT).show();
