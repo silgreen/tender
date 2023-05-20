@@ -24,11 +24,7 @@ public class Order {
 
     //modifiche ale
     public double getTotale(){
-        double totale = 0;
-        for (Drink d : drinkList) {
-            totale+=d.getCosto();
-        }
-        return totale;
+        return drinkList.stream().mapToDouble(Drink::getCosto).sum();
     }
     //fine modifiche
 }
