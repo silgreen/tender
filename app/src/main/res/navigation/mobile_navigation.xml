@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_cart"/>
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.tender.fragments.SearchFragment"
+        android:name="com.example.tender.fragments.TipoDrinkFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search"/>
+        tools:layout="@layout/fragment_tipo_drink"/>
 </navigation>

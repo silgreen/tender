@@ -3,37 +3,43 @@ package com.example.tender.fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.tender.R;
 import com.example.tender.communication.SocketClient;
-import com.example.tender.entities.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Locale;
 
 public class ProfiloFragment extends Fragment {
     private TextView textViewNomeUtente;
     private TextView textViewPortafoglio;
+    float portafoglio;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profilo, container, false);
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         textViewNomeUtente = view.findViewById(R.id.textViewNomeUtenteProfilo);
         textViewPortafoglio = view.findViewById(R.id.textViewPortafoglio);
 
-        /*
-        textViewNomeUtente.setText(new User().getUsername());
-        textViewPortafoglio.setText(Double.toString(new User().getPortafoglio()));
-         */
+        String username = preferences.getString("username","UTENTE");
+        portafoglio = preferences.getFloat("portafoglio",0.0f);
+
+        textViewNomeUtente.setText(username);
+        textViewPortafoglio.setText(String.format(Locale.getDefault(),"%.2f",portafoglio));
 
         view.findViewById(R.id.buttonAddMoney).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +51,13 @@ public class ProfiloFragment extends Fragment {
         view.findViewById(R.id.buttonLogOut).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //LOG OUT
+                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("logged",false);
+                editor.apply();
+                Navigation.findNavController(view).navigate(R.id.loginFragment2);
+                BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
+                bottomNavigationView.setVisibility(View.GONE);
             }
         });
         return view;
@@ -54,7 +66,7 @@ public class ProfiloFragment extends Fragment {
     private void showDialog(Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Aggiungi soldi");
-        builder.setMessage("Inserisci quante euro vuoi aggiungere");
+        builder.setMessage("Inserisci quanto denaro vuoi aggiungere");
 
         final EditText text = new EditText(context);
         text.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
@@ -64,7 +76,15 @@ public class ProfiloFragment extends Fragment {
         builder.setPositiveButton("Aggiungi", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 SocketClient socketClient = new SocketClient(getContext());
-                socketClient.startAggiungiDenaro(Double.parseDouble(text.toString()));
+                float addDenaro = Float.parseFloat(text.getText().toString());
+                socketClient.startAggiungiDenaro(addDenaro);
+                portafoglio += addDenaro;
+                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putFloat("portafoglio",portafoglio);
+                editor.apply();
+                textViewPortafoglio.setText(String.format(Locale.getDefault(),"%.2f",portafoglio));
+
             }
         });
         builder.setNegativeButton("Cancella", new DialogInterface.OnClickListener() {

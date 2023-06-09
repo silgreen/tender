@@ -1,20 +1,16 @@
 package com.example.tender.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.NavHost;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
 import com.example.tender.R;
-import com.example.tender.fragments.HomeFragment;
-import com.example.tender.fragments.LoginFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,11 +31,23 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this,navController,appBarConfiguration);
         NavigationUI.setupWithNavController(navView,navController);
         navView.setVisibility(View.GONE);
-        SharedPreferences sharedPreferences = getSharedPreferences("info",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         boolean logged = sharedPreferences.getBoolean("logged",false);
-        //if(!logged)
-        navController.navigate(R.id.navigation_home);
+        if(!logged)
+          navController.navigate(R.id.loginFragment2);
+        else
+            navController.navigate(R.id.navigation_home);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        assert navHostFragment != null;
+        NavController navController = navHostFragment.getNavController();
+        return navController.navigateUp();
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        if(!onSupportNavigateUp()) super.onBackPressed();
     }
 }

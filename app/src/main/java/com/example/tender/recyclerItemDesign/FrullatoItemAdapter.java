@@ -20,25 +20,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeItemHolder> {
+public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapter.FrullatoItemHolder>{
     List<Drink> drinkList;
     List<Ingredients> ingredientsList;
 
-    public HomeItemAdapter(List<Drink> drinkList){
+    public FrullatoItemAdapter(List<Drink> drinkList){
         this.drinkList=drinkList;
     }
+
     @NonNull
     @Override
-    public HomeItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_home_item,parent,false);
-        return new HomeItemHolder(view);
+    public FrullatoItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_frullato_item,parent,false);
+        return new FrullatoItemHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeItemHolder holder, int position) {
-        if(drinkList.get(position).getCategoria() == Drink.tipoDrink.COCKTAIL)
-            holder.tipoDrink.setText("Cocktail");
-        else holder.tipoDrink.setText("Frullato");
+    public void onBindViewHolder(@NonNull FrullatoItemHolder holder, int position) {
+        holder.tipoDrink.setText("Frullato");
         holder.nomeDrink.setText(drinkList.get(position).getNomeDrink());
         holder.descrizioneDrink.setText(drinkList.get(position).getDescrizione());
         holder.costoDrink.setText(String.format(Locale.getDefault(),"%.2f",drinkList.get(position).getCosto()));
@@ -55,7 +54,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         return drinkList.size();
     }
 
-    public static class HomeItemHolder extends RecyclerView.ViewHolder{
+    public static class FrullatoItemHolder extends RecyclerView.ViewHolder{
         private final FloatingActionButton floatingActionButton;
         private final TextView nomeDrink;
         private final TextView descrizioneDrink;
@@ -64,14 +63,14 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         private final TextView tipoDrink;
         private final List<Ingredients> ins;
 
-        public HomeItemHolder(@NonNull View itemView) {
+        public FrullatoItemHolder(@NonNull View itemView) {
             super(itemView);
-            tipoDrink = itemView.findViewById(R.id.textViewTipoDrink);
-            nomeDrink = itemView.findViewById(R.id.textViewNomeDrink);
+            tipoDrink = itemView.findViewById(R.id.textViewFrullatoTipoDrink);
+            nomeDrink = itemView.findViewById(R.id.textViewNomeDrinkFrullato);
             /* codice da modificare */
-            descrizioneDrink = itemView.findViewById(R.id.textViewDescrizione);
-            costoDrink = itemView.findViewById(R.id.textViewCosto);
-            venditeDrink = itemView.findViewById(R.id.textViewVendite);
+            descrizioneDrink = new TextView(itemView.getContext());
+            costoDrink = new TextView(itemView.getContext());
+            venditeDrink = new TextView(itemView.getContext());
             ins = new ArrayList<>();
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,15 +79,13 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
                 }
             });
             /*fine codice da modificare*/
-            floatingActionButton = itemView.findViewById(R.id.floatingActionButtonAdd);
+            floatingActionButton = itemView.findViewById(R.id.floatingActionButtonAddFrullato);
 
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Drink drink = new Drink();
                     drink.setNomeDrink(nomeDrink.getText().toString());
-                    drink.setDescrizione(descrizioneDrink.getText().toString());
-                    drink.setCategoria(Drink.tipoDrink.valueOf(tipoDrink.getText().toString()));
                     drink.setCosto(Float.parseFloat(costoDrink.getText().toString()));
                     Order.getInstance().getDrinkList().add(drink);
                     Toast.makeText(view.getContext(), "Drink aggiunto al carrello", Toast.LENGTH_SHORT).show();
