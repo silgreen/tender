@@ -36,9 +36,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
             holder.tipoDrink.setText("Cocktail");
         else holder.tipoDrink.setText("Frullato");
         holder.nomeDrink.setText(drinkList.get(position).getNomeDrink());
-        holder.descrizioneDrink.setText(drinkList.get(position).getDescrizione());
-        holder.costoDrink.setText(String.format(Locale.getDefault(),"%.2f",drinkList.get(position).getCosto()));
-        holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
+        holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f",drinkList.get(position).getCosto()));
         holder.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +46,6 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
                 TextView textView = view.getRootView().findViewById(R.id.textViewTotaleCosto);
                 String tot = String.format(Locale.getDefault(),"%.2f",Order.getInstance().getTotale());
                 textView.setText(tot);
-
             }
         });
     }
@@ -64,20 +61,14 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
         private final FloatingActionButton floatingActionButton;
         private final TextView nomeDrink;
         private final TextView tipoDrink;
-        private final TextView descrizioneDrink;
         private final TextView costoDrink;
-        private final TextView venditeDrink;
 
         public CartItemHolder(@NonNull View itemView) {
             super(itemView);
             tipoDrink = itemView.findViewById(R.id.textViewTipoDrinkCart);
             nomeDrink = itemView.findViewById(R.id.textViewNomeDrinkCart);
 
-            /* codice da modificare */
-            descrizioneDrink = new TextView(itemView.getContext());
-            costoDrink = new TextView(itemView.getContext());
-            venditeDrink = new TextView(itemView.getContext());
-            /*fine codice da modificare*/
+            costoDrink = itemView.findViewById(R.id.textViewCostoCart);
             floatingActionButton = itemView.findViewById(R.id.floatingActionButtonRemove);
 
         }

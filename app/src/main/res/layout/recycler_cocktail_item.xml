@@ -3,7 +3,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/textViewVenditeCocktail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCostoCocktail" />
 
+    <TextView
+        android:id="@+id/textViewCostoCocktail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButtonAddCocktail" />
+
+    <TextView
+        android:id="@+id/textViewDescrizioneCocktail"
+        android:layout_width="202dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAddCocktail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeDrinkCocktail" />
+    <TextView
+        android:id="@+id/textViewIngredientListCocktail"
+        android:layout_width="211dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textViewCostoCocktail"
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescrizioneCocktail" />
     <TextView
         android:id="@+id/textViewCocktailTipoDrink"
         android:layout_width="wrap_content"
@@ -11,6 +57,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="16dp"
         android:text="categoria"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAddCocktail"
         app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +70,8 @@
         android:layout_marginStart="72dp"
         android:layout_marginTop="16dp"
         android:text="nomeDrink"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAddCocktail"
         app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"

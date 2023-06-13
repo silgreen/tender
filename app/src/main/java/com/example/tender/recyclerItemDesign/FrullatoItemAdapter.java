@@ -1,6 +1,5 @@
 package com.example.tender.recyclerItemDesign;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tender.R;
 import com.example.tender.entities.Drink;
-import com.example.tender.entities.Ingredients;
 import com.example.tender.entities.Order;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapter.FrullatoItemHolder>{
     List<Drink> drinkList;
-    List<Ingredients> ingredientsList;
 
     public FrullatoItemAdapter(List<Drink> drinkList){
         this.drinkList=drinkList;
@@ -43,9 +39,7 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
         holder.costoDrink.setText(String.format(Locale.getDefault(),"%.2f",drinkList.get(position).getCosto()));
         holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
 
-        ingredientsList = new ArrayList<>(); //non so se serve
-        ingredientsList.addAll(drinkList.get(position).getIngredientsList());//non so se serve
-        holder.ins.addAll(ingredientsList);
+        holder.ingredientList.setText(drinkList.get(position).ingredientListToString());
     }
 
     @Override
@@ -55,41 +49,34 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
     }
 
     public static class FrullatoItemHolder extends RecyclerView.ViewHolder{
-        private final FloatingActionButton floatingActionButton;
         private final TextView nomeDrink;
         private final TextView descrizioneDrink;
         private final TextView costoDrink;
         private final TextView venditeDrink;
         private final TextView tipoDrink;
-        private final List<Ingredients> ins;
+        private final TextView ingredientList;
 
         public FrullatoItemHolder(@NonNull View itemView) {
             super(itemView);
             tipoDrink = itemView.findViewById(R.id.textViewFrullatoTipoDrink);
             nomeDrink = itemView.findViewById(R.id.textViewNomeDrinkFrullato);
-            /* codice da modificare */
-            descrizioneDrink = new TextView(itemView.getContext());
-            costoDrink = new TextView(itemView.getContext());
-            venditeDrink = new TextView(itemView.getContext());
-            ins = new ArrayList<>();
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("ingredientList", ins + "");
-                }
-            });
-            /*fine codice da modificare*/
-            floatingActionButton = itemView.findViewById(R.id.floatingActionButtonAddFrullato);
 
-            floatingActionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Drink drink = new Drink();
-                    drink.setNomeDrink(nomeDrink.getText().toString());
-                    drink.setCosto(Float.parseFloat(costoDrink.getText().toString()));
-                    Order.getInstance().getDrinkList().add(drink);
-                    Toast.makeText(view.getContext(), "Drink aggiunto al carrello", Toast.LENGTH_SHORT).show();
-                }
+            descrizioneDrink = itemView.findViewById(R.id.textViewDescrizioneFrullato);
+            costoDrink = itemView.findViewById(R.id.textViewCostoFrullato);
+            venditeDrink = itemView.findViewById(R.id.textViewVenditeFrullato);
+            ingredientList = itemView.findViewById(R.id.textViewIngredientListFrullato);
+
+            FloatingActionButton floatingActionButton = itemView.findViewById(R.id.floatingActionButtonAddFrullato);
+            floatingActionButton.setOnClickListener(view -> {
+                Drink drink = new Drink();
+                drink.setNomeDrink(nomeDrink.getText().toString());
+                drink.setDescrizione(descrizioneDrink.getText().toString());
+                if(tipoDrink.getText().toString().equals("Cocktail"))
+                    drink.setCategoria(Drink.tipoDrink.COCKTAIL);
+                else drink.setCategoria(Drink.tipoDrink.FRULLATO);
+                drink.setCosto(Float.parseFloat(costoDrink.getText().toString()));
+                Order.getInstance().getDrinkList().add(drink);
+                Toast.makeText(view.getContext(), "Drink aggiunto al carrello", Toast.LENGTH_SHORT).show();
             });
         }
     }

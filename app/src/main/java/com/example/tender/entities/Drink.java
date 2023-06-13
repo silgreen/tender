@@ -106,4 +106,13 @@ public class Drink {
                 ", categoria=" + categoria +
                 '}';
     }
+
+    public String ingredientListToString(){
+        StringBuilder s = new StringBuilder();
+        for (int i = 0;i<ingredientsList.size();i++) {
+            if(i==ingredientsList.size()-1) s.append(ingredientsList.get(i).getNomeIngrediente());
+            else s.append(ingredientsList.get(i).getNomeIngrediente()).append(",");
+        }
+        return s.toString();
+    }
 }

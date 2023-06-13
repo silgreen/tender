@@ -41,6 +41,8 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         listDrinks.sort(Comparator.comparingInt(Drink::getVendite).reversed());
         recyclerView.setAdapter(new HomeItemAdapter(listDrinks));
+
+
         for (Drink d:listDrinks) {
             d.addIngredientList(listIngredient);
         }

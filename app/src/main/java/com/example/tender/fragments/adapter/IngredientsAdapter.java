@@ -9,14 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tender.R;
+import com.example.tender.entities.Ingredients;
 
 import java.util.List;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHolder>{
 
-    private final List<String> ingredientList;
+    private final List<Ingredients> ingredientList;
 
-    public IngredientsAdapter(List<String> ingredientList) {
+    public IngredientsAdapter(List<Ingredients> ingredientList) {
         this.ingredientList = ingredientList;
     }
 
@@ -29,7 +30,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getNomeIngrediente().setText(ingredientList.get(position));
+        holder.getNomeIngrediente().setText(ingredientList.get(position).getNomeIngrediente());
     }
 
     @Override
