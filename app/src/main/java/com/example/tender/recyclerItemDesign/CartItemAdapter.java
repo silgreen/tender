@@ -37,16 +37,13 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
         else holder.tipoDrink.setText("Frullato");
         holder.nomeDrink.setText(drinkList.get(position).getNomeDrink());
         holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f",drinkList.get(position).getCosto()));
-        holder.floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Order.getInstance().getDrinkList().remove(drinkList.get(holder.getAdapterPosition()));
-                Toast.makeText(view.getContext(), "Drink rimosso dal carrello", Toast.LENGTH_SHORT).show();
-                notifyItemRemoved(holder.getAdapterPosition());
-                TextView textView = view.getRootView().findViewById(R.id.textViewTotaleCosto);
-                String tot = String.format(Locale.getDefault(),"%.2f",Order.getInstance().getTotale());
-                textView.setText(tot);
-            }
+        holder.floatingActionButton.setOnClickListener(view -> {
+            Order.getInstance().getDrinkList().remove(drinkList.get(holder.getAdapterPosition()));
+            Toast.makeText(view.getContext(), "Drink rimosso dal carrello", Toast.LENGTH_SHORT).show();
+            notifyItemRemoved(holder.getAdapterPosition());
+            TextView textViewTotaleCostoLabel = view.getRootView().findViewById(R.id.textViewTotaleCosto);
+            String tot = String.format(Locale.getDefault(),"$%.2f",Order.getInstance().getTotale());
+            textViewTotaleCostoLabel.setText(tot);
         });
     }
 

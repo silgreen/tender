@@ -36,7 +36,8 @@ public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapte
         holder.tipoDrink.setText("Cocktail");
         holder.nomeDrink.setText(drinkList.get(position).getNomeDrink());
         holder.descrizioneDrink.setText(drinkList.get(position).getDescrizione());
-        holder.costoDrink.setText(String.format(Locale.getDefault(),"%.2f",drinkList.get(position).getCosto()));
+        holder.costo = drinkList.get(position).getCosto();
+        holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f",holder.costo));
         holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
 
         holder.ingredientList.setText(drinkList.get(position).ingredientListToString());
@@ -56,17 +57,18 @@ public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapte
         private final TextView venditeDrink;
         private final TextView tipoDrink;
         private final TextView ingredientList;
+        private float costo;
 
         public CocktailItemHolder(@NonNull View itemView) {
             super(itemView);
-            tipoDrink = itemView.findViewById(R.id.textViewCocktailTipoDrink);
+            tipoDrink = itemView.findViewById(R.id.textViewTipoDrinkCocktail);
             nomeDrink = itemView.findViewById(R.id.textViewNomeDrinkCocktail);
-            descrizioneDrink = itemView.findViewById(R.id.textViewDescrizione);
-            costoDrink = itemView.findViewById(R.id.textViewCosto);
-            venditeDrink = itemView.findViewById(R.id.textViewVendite);
-            ingredientList = itemView.findViewById(R.id.textViewIngredientList);
+            descrizioneDrink = itemView.findViewById(R.id.textViewDescrizioneCocktail);
+            costoDrink = itemView.findViewById(R.id.textViewCostoCocktail);
+            venditeDrink = itemView.findViewById(R.id.textViewVenditeCocktail);
+            ingredientList = itemView.findViewById(R.id.textViewIngredientListCocktail);
 
-            FloatingActionButton floatingActionButton = itemView.findViewById(R.id.floatingActionButtonAdd);
+            FloatingActionButton floatingActionButton = itemView.findViewById(R.id.floatingActionButtonAddCocktail);
             floatingActionButton.setOnClickListener(view -> {
                 Drink drink = new Drink();
                 drink.setNomeDrink(nomeDrink.getText().toString());
@@ -74,7 +76,7 @@ public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapte
                 if(tipoDrink.getText().toString().equals("Cocktail"))
                     drink.setCategoria(Drink.tipoDrink.COCKTAIL);
                 else drink.setCategoria(Drink.tipoDrink.FRULLATO);
-                drink.setCosto(Float.parseFloat(costoDrink.getText().toString()));
+                drink.setCosto(costo);
                 Order.getInstance().getDrinkList().add(drink);
                 Toast.makeText(view.getContext(), "Drink aggiunto al carrello", Toast.LENGTH_SHORT).show();
             });

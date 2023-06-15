@@ -36,7 +36,8 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
         holder.tipoDrink.setText("Frullato");
         holder.nomeDrink.setText(drinkList.get(position).getNomeDrink());
         holder.descrizioneDrink.setText(drinkList.get(position).getDescrizione());
-        holder.costoDrink.setText(String.format(Locale.getDefault(),"%.2f",drinkList.get(position).getCosto()));
+        holder.costo = drinkList.get(position).getCosto();
+        holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f",holder.costo));
         holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
 
         holder.ingredientList.setText(drinkList.get(position).ingredientListToString());
@@ -55,10 +56,11 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
         private final TextView venditeDrink;
         private final TextView tipoDrink;
         private final TextView ingredientList;
+        private float costo;
 
         public FrullatoItemHolder(@NonNull View itemView) {
             super(itemView);
-            tipoDrink = itemView.findViewById(R.id.textViewFrullatoTipoDrink);
+            tipoDrink = itemView.findViewById(R.id.textViewTipoDrinkFrullato);
             nomeDrink = itemView.findViewById(R.id.textViewNomeDrinkFrullato);
 
             descrizioneDrink = itemView.findViewById(R.id.textViewDescrizioneFrullato);
@@ -74,7 +76,7 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
                 if(tipoDrink.getText().toString().equals("Cocktail"))
                     drink.setCategoria(Drink.tipoDrink.COCKTAIL);
                 else drink.setCategoria(Drink.tipoDrink.FRULLATO);
-                drink.setCosto(Float.parseFloat(costoDrink.getText().toString()));
+                drink.setCosto(costo);
                 Order.getInstance().getDrinkList().add(drink);
                 Toast.makeText(view.getContext(), "Drink aggiunto al carrello", Toast.LENGTH_SHORT).show();
             });

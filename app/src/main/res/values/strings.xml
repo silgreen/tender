@@ -8,4 +8,6 @@
     <string name="registrati">Registrati</string>
     <string name="non_sei_registrato">Non sei registrato?</string>
     <string name="registrati_label">Registrati</string>
+    <string name="prezzo">Prezzo :</string>
+    <string name="venduti">Venduti :</string>
 </resources>

@@ -3,13 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textViewVendutiLabelFrullato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/venduti"
+        app:layout_constraintEnd_toStartOf="@+id/textViewVenditeFrullato"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewIngredientListFrullato" />
+
     <TextView
         android:id="@+id/textViewVenditeFrullato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="12dp"
-        android:text="TextView"
+        android:text="Vendite"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCostoFrullato" />
@@ -20,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="12dp"
-        android:text="TextView"
+        android:text="Costo"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,36 +44,24 @@
         android:layout_height="30dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="Descrizione"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAddFrullato"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNomeDrinkFrullato" />
+
     <TextView
-        android:id="@+id/textViewFrullatoTipoDrink"
+        android:id="@+id/textViewTipoDrinkFrullato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="16dp"
-        android:text="categoria"
+        android:layout_marginEnd="64dp"
+        android:text="Tipo Drink"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAddFrullato"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/textViewIngredientListFrullato"
-        android:layout_width="211dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textViewCostoFrullato"
-        app:layout_constraintHorizontal_bias="0.553"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescrizioneFrullato" />
+
     <TextView
         android:id="@+id/textViewNomeDrinkFrullato"
         android:layout_width="wrap_content"
@@ -71,10 +71,10 @@
         android:text="nomeDrink"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAddFrullato"
-        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintEnd_toStartOf="@+id/textViewTipoDrinkFrullato"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFrullatoTipoDrink" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonAddFrullato"
@@ -85,18 +85,30 @@
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add"
-        />
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <View
         android:id="@+id/viewstrokeFrullato"
         android:layout_width="match_parent"
         android:layout_height="1sp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingActionButtonAddFrullato" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewVenditeFrullato" />
+
+    <TextView
+        android:id="@+id/textViewIngredientListFrullato"
+        android:layout_width="211dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="20dp"
+        android:text="Ingredienti"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textViewCostoFrullato"
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescrizioneFrullato" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
