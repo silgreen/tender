@@ -4,8 +4,8 @@ public class User {
 
     private String username;
 
-    //modifiche ale
-    private String password; //se si vuole anche la password ,potrebbe non servire
+
+    private String password;
     private float portafoglio; // per fare acquisti
 
     public void setPassword(String password) {
@@ -23,7 +23,6 @@ public class User {
         portafoglio+=money;
     }
 
-    //fine modifiche ale
     public String getUsername() {
         return username;
     }

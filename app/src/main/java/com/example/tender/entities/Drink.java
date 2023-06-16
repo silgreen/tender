@@ -10,8 +10,7 @@ public class Drink {
     private String descrizione;
     private List<Ingredients> ingredientsList;
 
-    //INIZIO modifiche ale
-    private int vendite; // potrebbe servire per il criterio dei consigli dei drink
+    private int vendite;
     private float costo;
     public enum tipoDrink {COCKTAIL,FRULLATO};
     private tipoDrink categoria;
@@ -49,7 +48,7 @@ public class Drink {
         this.categoria = categoria;
     }
 
-    //FINE modifiche ale
+
 
     public List<Ingredients> getIngredientsList() {
         return ingredientsList;

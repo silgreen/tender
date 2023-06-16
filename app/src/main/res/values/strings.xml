@@ -10,4 +10,8 @@
     <string name="registrati_label">Registrati</string>
     <string name="prezzo">Prezzo :</string>
     <string name="venduti">Venduti :</string>
+    <string name="drinks">Drinks</string>
+    <string name="menu">Menu</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
 </resources>
