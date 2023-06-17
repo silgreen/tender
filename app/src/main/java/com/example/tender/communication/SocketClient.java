@@ -82,7 +82,7 @@ public class SocketClient {
     }
 
 
-    public void richiestaLogin() {
+    public void requestLogin() {
         String LOGIN = "login";
         writer.println(LOGIN);
     }
@@ -97,41 +97,41 @@ public class SocketClient {
         return response.equals("Registration");
     }
 
-    public void richiestaRegistrazione() {
+    public void requestRegistrazione() {
         String REGISTRAZIONE = "registrazione";
         writer.println(REGISTRAZIONE);
     }
-    public void richiestaAggiungiDenaro() {
+    public void requestAggiungiDenaro() {
         String AGGIUNGI_DENARO = "AggiungiDenaro";
         writer.println(AGGIUNGI_DENARO);
     }
 
 
-    public void richiestaHomepage() {
+    public void requestHomepage() {
         String HOMEPAGE = "home";
         writer.println(HOMEPAGE);
     }
 
-    public void richiestaCocktail() {
+    public void retrieveCocktail() {
         String COCKTAIL = "cocktail";
         writer.println(COCKTAIL);
     }
 
-    public void richiestaFrullato() {
+    public void retrieveFrullati() {
         String FRULLATO = "frullato";
         writer.println(FRULLATO);
     }
 
-    public void richiestaIngredienti(){
+    public void retrieveIngredienti(){
         String INGREDIENTI = "ingredienti";
         writer.println(INGREDIENTI);
     }
 
-    public void richiestaAcquista() {
+    public void requestAcquista() {
         String ACQUISTA = "buy";
         writer.println(ACQUISTA);
     }
-    public void richiestaUpdateVendite(){
+    public void requestUpdateVendite(){
         String UPDATE = "update_vendite";
         writer.println(UPDATE);
     }
@@ -148,14 +148,14 @@ public class SocketClient {
 
     }
 
-    public boolean startLogin(User user){
+    public boolean requestLogin(User user){
         AtomicBoolean flag = new AtomicBoolean(false);
         Runnable login = () -> {
             initSocket();
             if(socket.isConnected()){
                 writer.println(user.getUsername());
                 if(checkResponseOK()) {
-                    richiestaLogin();
+                    requestLogin();
                     if (checkResponseOK()) {
                         writer.println(user.getUsername() + ";" + user.getPassword());
                         String [] userDeserialized = deserializeUser();
@@ -178,14 +178,14 @@ public class SocketClient {
         return flag.get();
     }
 
-    public boolean startRegistrazione(User user){
+    public boolean requestRegistrazione(User user){
         AtomicBoolean flag = new AtomicBoolean(false);
         Runnable registration = () ->{
             initSocket();
             if(socket.isConnected()){
                 writer.println(user.getUsername());
                 if(checkResponseOK()){
-                    richiestaRegistrazione();
+                    requestRegistrazione();
                     if(checkResponseOK()) {
                         writer.println(user.getUsername() + ";" + user.getPassword());
                         if (checkRegistration()) {
@@ -209,13 +209,13 @@ public class SocketClient {
 
 
 
-    public void startAggiungiDenaro(double denaro){
+    public void requestAggiungiDenaro(double denaro){
         Runnable addMoneyThread = () -> {
             initSocket();
             if(socket.isConnected()){
                 sendUsername();
                 if(checkResponseOK()){
-                    richiestaAggiungiDenaro();
+                    requestAggiungiDenaro();
                     if(checkResponseOK()){
                         writer.println(getUsernameFromPreferences() + ";" + denaro);
                     }
@@ -276,9 +276,9 @@ public class SocketClient {
             if(socket.isConnected()){
                 sendUsername();
                 if(checkResponseOK()){
-                    richiestaHomepage();
+                    requestHomepage();
                     drinks.addAll(deserializeDrinks());
-                    richiestaIngredienti();
+                    retrieveIngredienti();
                     ingredients.addAll(deserializeIngredients());
 
                 }
@@ -294,15 +294,15 @@ public class SocketClient {
         }
     }
 
-    public void startCoktail(List<Drink> drinks, List<Ingredients> ingredients){
+    public void retriveveCocktails(List<Drink> drinks, List<Ingredients> ingredients){
         Runnable cocktail = () -> {
             initSocket();
             if(socket.isConnected()){
                 sendUsername();
                 if(checkResponseOK()){
-                    richiestaCocktail();
+                    retrieveCocktail();
                     drinks.addAll(deserializeDrinks());
-                    richiestaIngredienti();
+                    retrieveIngredienti();
                     ingredients.addAll(deserializeIngredients());
                 }
             }
@@ -323,9 +323,9 @@ public class SocketClient {
             if(socket.isConnected()){
                 sendUsername();
                 if(checkResponseOK()){
-                    richiestaFrullato();
+                    retrieveFrullati();
                     drinks.addAll(deserializeDrinks());
-                    richiestaIngredienti();
+                    retrieveIngredienti();
                     ingredients.addAll(deserializeIngredients());
                 }
             }
@@ -353,11 +353,11 @@ public class SocketClient {
             if(socket.isConnected()){
                 sendUsername();
                 if (checkResponseOK()){
-                    richiestaAcquista();
+                    requestAcquista();
                     if (checkResponseOK()){
                         writer.println(getUsernameFromPreferences() + ";" + denaro);
                         if(checkResponseOK()){
-                            richiestaUpdateVendite();
+                            requestUpdateVendite();
                             if(checkResponseOK())
                                 writer.println(serializeDrinkName(drinks));
                         }

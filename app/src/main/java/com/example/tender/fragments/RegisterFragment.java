@@ -34,7 +34,7 @@ public class RegisterFragment extends Fragment {
                 user.setUsername(username);
                 user.setPassword(password);
 
-                if (socketClient.startRegistrazione(user)) {
+                if (socketClient.requestRegistrazione(user)) {
                     Toast.makeText(getContext(), "Registrato", Toast.LENGTH_SHORT).show();
                     Navigation.findNavController(view).navigate(R.id.loginFragment2);
                 }else

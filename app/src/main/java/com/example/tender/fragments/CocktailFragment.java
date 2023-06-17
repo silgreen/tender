@@ -14,7 +14,6 @@ import com.example.tender.communication.SocketClient;
 import com.example.tender.entities.Drink;
 import com.example.tender.entities.Ingredients;
 import com.example.tender.recyclerItemDesign.CocktailItemAdapter;
-import com.example.tender.recyclerItemDesign.HomeItemAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class CocktailFragment extends Fragment {
         List<Drink> listDrinks = new ArrayList<>();
         List<Ingredients> listIngredient = new ArrayList<>();
         SocketClient socketClient = new SocketClient(getContext());
-        socketClient.startCoktail(listDrinks,listIngredient);
+        socketClient.retriveveCocktails(listDrinks,listIngredient);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewCocktailItem);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

@@ -32,9 +32,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
     @Override
     public void onBindViewHolder(@NonNull CartItemHolder holder, int position) {
-        if(drinkList.get(position).getCategoria() == Drink.tipoDrink.COCKTAIL)
-            holder.tipoDrink.setText("Cocktail");
-        else holder.tipoDrink.setText("Frullato");
+        holder.tipoDrink.setText(drinkList.get(position).getCategoria().toString());
         holder.nomeDrink.setText(drinkList.get(position).getNomeDrink());
         holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f",drinkList.get(position).getCosto()));
         holder.floatingActionButton.setOnClickListener(view -> {
@@ -64,7 +62,6 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
             super(itemView);
             tipoDrink = itemView.findViewById(R.id.textViewTipoDrinkCart);
             nomeDrink = itemView.findViewById(R.id.textViewNomeDrinkCart);
-
             costoDrink = itemView.findViewById(R.id.textViewCostoCart);
             floatingActionButton = itemView.findViewById(R.id.floatingActionButtonRemove);
 

@@ -48,17 +48,18 @@ public class CartFragment extends Fragment {
             if(!order.getDrinkList().isEmpty()) {
                 if(order.getTotale() < portafoglio) {
                     int size = order.getDrinkList().size();
+                    String totale = String.valueOf(order.getTotale());
                     SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putFloat("portafoglio",portafoglio - order.getTotale());
                     editor.apply();
                     socketClient.startBuy(order.getTotale(), order.getDrinkList());
                     order.getDrinkList().clear();
-                    textViewTotale.setText("0.00");
+                    textViewTotale.setText(totale);
                     adapter.notifyItemRangeRemoved(0, size);
-                    Toast.makeText(getContext(), "Drink comprati ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Ordine andato a buon fine", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(getContext(), "Soldi Insufficienti", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Soldi insufficienti", Toast.LENGTH_SHORT).show();
                 }
             }
         });

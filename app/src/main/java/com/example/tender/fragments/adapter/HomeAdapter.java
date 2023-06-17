@@ -26,8 +26,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getNomeDrink().setText("Negrosky");
-        holder.getDescrizioneDrink().setText("we pasquale come stai");
+        holder.getNomeDrink().setText(drinkList.get(position).getNomeDrink());
+        holder.getDescrizioneDrink().setText(drinkList.get(position).getDescrizione());
         holder.getImageViewDrink().setImageResource(R.drawable.drink);
     }
 

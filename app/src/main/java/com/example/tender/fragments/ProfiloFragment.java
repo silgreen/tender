@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +40,7 @@ public class ProfiloFragment extends Fragment {
         portafoglio = preferences.getFloat("portafoglio",0.0f);
 
         textViewNomeUtente.setText(username);
-        textViewPortafoglio.setText(String.format(Locale.getDefault(),"%.2f",portafoglio));
+        textViewPortafoglio.setText(String.format(Locale.getDefault(),"$%.2f",portafoglio));
 
         view.findViewById(R.id.buttonAddMoney).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,27 +66,26 @@ public class ProfiloFragment extends Fragment {
 
     private void showDialog(Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Aggiungi soldi");
-        builder.setMessage("Inserisci quanto denaro vuoi aggiungere");
+        builder.setTitle("Carica credito portafoglio");
+        builder.setMessage("Inserisci l'importo da caricare");
 
         final EditText text = new EditText(context);
         text.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
         builder.setView(text);
 
-        builder.setPositiveButton("Aggiungi", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                SocketClient socketClient = new SocketClient(getContext());
-                float addDenaro = Float.parseFloat(text.getText().toString());
-                socketClient.startAggiungiDenaro(addDenaro);
-                portafoglio += addDenaro;
-                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putFloat("portafoglio",portafoglio);
-                editor.apply();
-                textViewPortafoglio.setText(String.format(Locale.getDefault(),"%.2f",portafoglio));
+        builder.setPositiveButton("Aggiungi", (dialog, id) -> {
+            SocketClient socketClient = new SocketClient(getContext());
+            float addDenaro = Float.parseFloat(text.getText().toString());
+            socketClient.requestAggiungiDenaro(addDenaro);
+            portafoglio += addDenaro;
+            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putFloat("portafoglio",portafoglio);
+            editor.apply();
+            textViewPortafoglio.setText(String.format(Locale.getDefault(),"$%.2f",portafoglio));
+            Toast.makeText(context, "Credito caricato correttamente!", Toast.LENGTH_SHORT).show();
 
-            }
         });
         builder.setNegativeButton("Cancella", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

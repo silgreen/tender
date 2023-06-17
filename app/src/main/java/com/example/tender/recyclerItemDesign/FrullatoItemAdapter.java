@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapter.FrullatoItemHolder>{
-    List<Drink> drinkList;
+    private final List<Drink> drinkList;
 
     public FrullatoItemAdapter(List<Drink> drinkList){
         this.drinkList=drinkList;
@@ -33,7 +33,7 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
 
     @Override
     public void onBindViewHolder(@NonNull FrullatoItemHolder holder, int position) {
-        holder.tipoDrink.setText("Frullato");
+        holder.tipoDrink.setText(drinkList.get(position).getCategoria().toString());
         holder.nomeDrink.setText(drinkList.get(position).getNomeDrink());
         holder.descrizioneDrink.setText(drinkList.get(position).getDescrizione());
         holder.costo = drinkList.get(position).getCosto();

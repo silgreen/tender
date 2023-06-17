@@ -5,13 +5,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.SavedStateHandle;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +17,6 @@ import android.widget.Toast;
 import com.example.tender.R;
 import com.example.tender.communication.SocketClient;
 import com.example.tender.entities.User;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class LoginFragment extends Fragment {
 
@@ -39,7 +34,7 @@ public class LoginFragment extends Fragment {
             User user = new User();
             user.setUsername(usernameString);
             user.setPassword(passwordString);
-            if(!usernameString.isEmpty() && !passwordString.isEmpty() && socketClient.startLogin(user)) {
+            if(!usernameString.isEmpty() && !passwordString.isEmpty() && socketClient.requestLogin(user)) {
                 SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("logged",true);

@@ -33,9 +33,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
 
     @Override
     public void onBindViewHolder(@NonNull HomeItemHolder holder, int position) {
-        if(drinkList.get(position).getCategoria() == Drink.tipoDrink.COCKTAIL)
-            holder.tipoDrink.setText("Cocktail");
-        else holder.tipoDrink.setText("Frullato");
+        holder.tipoDrink.setText(drinkList.get(position).getCategoria().toString());
         holder.nomeDrink.setText(drinkList.get(position).getNomeDrink());
         holder.descrizioneDrink.setText(drinkList.get(position).getDescrizione());
         holder.costo = drinkList.get(position).getCosto();

@@ -33,7 +33,7 @@ public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapte
 
     @Override
     public void onBindViewHolder(@NonNull CocktailItemHolder holder, int position) {
-        holder.tipoDrink.setText("Cocktail");
+        holder.tipoDrink.setText(drinkList.get(position).getCategoria().toString());
         holder.nomeDrink.setText(drinkList.get(position).getNomeDrink());
         holder.descrizioneDrink.setText(drinkList.get(position).getDescrizione());
         holder.costo = drinkList.get(position).getCosto();
