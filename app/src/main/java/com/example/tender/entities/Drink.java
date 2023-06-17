@@ -17,19 +17,16 @@ public class Drink {
 
     public Drink(){}
 
-    public Drink(String nomeDrink, String descrizione, int vendite,float costo, tipoDrink categoria) {
+    public Drink(String nomeDrink, String descrizione, int vendite,float costo, int categoria) {
         this.nomeDrink = nomeDrink;
         this.descrizione = descrizione;
         this.vendite = vendite;
         this.costo = costo;
-        this.categoria = categoria;
+        this.categoria = tipoDrink.values()[categoria];
     }
 
     public int getVendite() {
         return vendite;
-    }
-    public void addVendita(){
-        vendite++;
     }
 
     public float getCosto() {

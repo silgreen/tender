@@ -240,15 +240,8 @@ public class SocketClient {
             if(s!= null ){
                 String[] arr = s.split(";", 5);
                 if(arr.length == 1) break;
-                if(arr[4].equals("Frullato")){
-                    Drink drink = new Drink(arr[0],arr[1], Integer.parseInt(arr[2]),Float.parseFloat(arr[3]), Drink.tipoDrink.FRULLATO);
-                    drinks.add(drink);
-                }
-                if(arr[4].equals("Cocktail")){
-                    Drink drink = new Drink(arr[0],arr[1], Integer.parseInt(arr[2]),Float.parseFloat(arr[3]), Drink.tipoDrink.COCKTAIL);
-                    drinks.add(drink);
-                }
-
+                Drink drink = new Drink(arr[0],arr[1], Integer.parseInt(arr[2]),Float.parseFloat(arr[3]), Integer.parseInt(arr[4]));
+                drinks.add(drink);
             }
         }
         return drinks;
