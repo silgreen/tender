@@ -2,6 +2,8 @@ package com.example.tender.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -41,6 +43,10 @@ public class RegisterFragment extends Fragment {
                     Toast.makeText(getContext(), "Username già esistente", Toast.LENGTH_SHORT).show();
             }
         });
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Registrati");
+        }
         return view;
     }
 }

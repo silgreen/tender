@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -28,6 +30,10 @@ public class LoginFragment extends Fragment {
         EditText usernameEditText = view.findViewById(R.id.usernameEditText);
         EditText passwordEditText = view.findViewById(R.id.passwordEditText);
         SocketClient socketClient = new SocketClient(getContext());
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Login");
+        }
         view.findViewById(R.id.loginButton).setOnClickListener(view1 -> {
             String usernameString = usernameEditText.getText().toString();
             String passwordString = passwordEditText.getText().toString();
