@@ -27,6 +27,10 @@ public class TipoDrinkFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tipo_drink, container, false);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Menu");
+        }
         TabLayout tabLayout = (TabLayout)view.findViewById(R.id.tab_layout);
         viewPager2 = view.findViewById(R.id.viewPager2);
         List<String> titlesTab = new ArrayList<>();

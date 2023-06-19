@@ -74,8 +74,8 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
                 drink.setNomeDrink(nomeDrink.getText().toString());
                 drink.setDescrizione(descrizioneDrink.getText().toString());
                 if(tipoDrink.getText().toString().equals("Cocktail"))
-                    drink.setCategoria(Drink.tipoDrink.COCKTAIL);
-                else drink.setCategoria(Drink.tipoDrink.FRULLATO);
+                    drink.setCategoria(Drink.tipoDrink.Cocktail);
+                else drink.setCategoria(Drink.tipoDrink.Frullato);
                 drink.setCosto(costo);
                 Order.getInstance().getDrinkList().add(drink);
                 Toast.makeText(view.getContext(), "Drink aggiunto al carrello", Toast.LENGTH_SHORT).show();

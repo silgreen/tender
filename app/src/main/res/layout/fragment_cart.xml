@@ -9,6 +9,7 @@
         android:id="@+id/recyclerViewCartItem"
         android:layout_width="410dp"
         android:layout_height="366dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Compra Drink"
+        android:text="@string/compra_drink"
+        android:background="@drawable/edit_text_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTotaleTesto" />
@@ -30,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
         android:layout_marginTop="36dp"
-        android:text="Totale prezzo :"
+        android:text="@string/totale_prezzo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewCartItem" />
 

@@ -19,9 +19,6 @@ public class User {
     public float getPortafoglio() {
         return portafoglio;
     }
-    public void addMoney(double money){
-        portafoglio+=money;
-    }
 
     public String getUsername() {
         return username;

@@ -12,7 +12,7 @@ public class Drink {
 
     private int vendite;
     private float costo;
-    public enum tipoDrink {COCKTAIL,FRULLATO};
+    public enum tipoDrink {Cocktail, Frullato};
     private tipoDrink categoria;
 
     public Drink(){}

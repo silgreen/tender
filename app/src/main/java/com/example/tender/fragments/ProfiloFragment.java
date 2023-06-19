@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -32,6 +34,10 @@ public class ProfiloFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profilo, container, false);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Profilo");
+        }
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         textViewNomeUtente = view.findViewById(R.id.textViewNomeUtenteProfilo);
         textViewPortafoglio = view.findViewById(R.id.textViewPortafoglio);
