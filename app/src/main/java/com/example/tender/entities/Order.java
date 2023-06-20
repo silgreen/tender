@@ -35,14 +35,6 @@ public class Order {
 
 
     public float getTotale(){
-        /*Mi da errore*/
-        //return drinkList.stream().mapToDouble(Drink::getCosto).sum();
-        float totale = 0.0f;
-        if(drinkList!=null){
-            for (Drink d:drinkList) {
-                totale += d.getCosto();
-            }
-        }
-        return totale;
+        return (float) drinkList.stream().mapToDouble(Drink::getCosto).sum();
     }
 }

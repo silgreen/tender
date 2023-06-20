@@ -19,4 +19,6 @@
     <string name="aggiungi_denaro">Aggiungi Denaro</string>
     <string name="logout">Logout</string>
     <string name="portafoglio">Portafoglio:</string>
+    <string name="credito">Credito :</string>
+    <string name="ciao">Ciao,</string>
 </resources>

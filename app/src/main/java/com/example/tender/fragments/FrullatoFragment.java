@@ -13,7 +13,6 @@ import com.example.tender.R;
 import com.example.tender.communication.SocketClient;
 import com.example.tender.entities.Drink;
 import com.example.tender.entities.Ingredients;
-import com.example.tender.recyclerItemDesign.CocktailItemAdapter;
 import com.example.tender.recyclerItemDesign.FrullatoItemAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

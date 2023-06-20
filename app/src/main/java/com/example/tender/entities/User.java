@@ -6,7 +6,7 @@ public class User {
 
 
     private String password;
-    private float portafoglio; // per fare acquisti
+    private float portafoglio;
 
     public void setPassword(String password) {
         this.password = password;

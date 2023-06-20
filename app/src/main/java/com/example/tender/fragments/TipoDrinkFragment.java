@@ -37,12 +37,7 @@ public class TipoDrinkFragment extends Fragment {
         titlesTab.add("Cocktail");
         titlesTab.add("Frullati");
         setViewPagerAdapter();
-        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText(titlesTab.get(position));
-            }
-        }).attach();
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(titlesTab.get(position))).attach();
         return view;
     }
     public void setViewPagerAdapter() {

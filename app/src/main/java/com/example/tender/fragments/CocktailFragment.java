@@ -37,7 +37,7 @@ public class CocktailFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewCocktailItem);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        listDrinks.sort(Comparator.comparingInt(Drink::getVendite).reversed());
+        listDrinks.sort(Comparator.comparingInt(Drink::getVendite));
         recyclerView.setAdapter(new CocktailItemAdapter(listDrinks));
         for (Drink d:listDrinks) {
             d.addIngredientList(listIngredient);

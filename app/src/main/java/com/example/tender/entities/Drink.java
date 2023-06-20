@@ -104,6 +104,7 @@ public class Drink {
     }
 
     public String ingredientListToString(){
+
         StringBuilder s = new StringBuilder();
         for (int i = 0;i<ingredientsList.size();i++) {
             if(i==ingredientsList.size()-1) s.append(ingredientsList.get(i).getNomeIngrediente());

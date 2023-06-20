@@ -75,12 +75,6 @@ public class SocketClient {
         return response.equals("ok");
     }
 
-    public boolean checkConnection() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        return networkInfo != null;
-    }
-
 
     public void requestLogin() {
         String LOGIN = "login";

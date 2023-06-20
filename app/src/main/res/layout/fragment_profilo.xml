@@ -7,22 +7,36 @@
 
     <TextView
         android:id="@+id/textViewCiaoTesto"
-        android:layout_width="66dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="48dp"
-        android:text="Ciao, "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="172dp"
+        android:text="@string/ciao"
+        android:textSize="18sp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPortafoglioTesto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/credito"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCiaoTesto" />
 
     <Button
         android:id="@+id/buttonAddMoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="@string/aggiungi_denaro"
+        android:layout_marginTop="170dp"
         android:background="@drawable/edit_text_rounded"
+        android:text="@string/aggiungi_denaro"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPortafoglioTesto" />
 
@@ -30,31 +44,23 @@
         android:id="@+id/buttonLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="@string/logout"
+        android:layout_marginTop="36dp"
         android:background="@drawable/edit_text_rounded"
+        android:text="@string/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddMoney" />
-
-    <TextView
-        android:id="@+id/textViewPortafoglioTesto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/portafoglio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCiaoTesto" />
 
     <TextView
         android:id="@+id/textViewNomeUtenteProfilo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="172dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toEndOf="@+id/textViewCiaoTesto"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,9 +69,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textViewPortafoglioTesto"
         app:layout_constraintTop_toBottomOf="@+id/textViewNomeUtenteProfilo" />
 

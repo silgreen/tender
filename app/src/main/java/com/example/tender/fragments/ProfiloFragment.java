@@ -48,24 +48,16 @@ public class ProfiloFragment extends Fragment {
         textViewNomeUtente.setText(username);
         textViewPortafoglio.setText(String.format(Locale.getDefault(),"$%.2f",portafoglio));
 
-        view.findViewById(R.id.buttonAddMoney).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog(view.getContext());
+        view.findViewById(R.id.buttonAddMoney).setOnClickListener(view12 -> showDialog(view12.getContext()));
 
-            }
-        });
-        view.findViewById(R.id.buttonLogOut).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("logged",false);
-                editor.apply();
-                Navigation.findNavController(view).navigate(R.id.loginFragment2);
-                BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
-                bottomNavigationView.setVisibility(View.GONE);
-            }
+        view.findViewById(R.id.buttonLogOut).setOnClickListener(view1 -> {
+            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("logged",false);
+            editor.apply();
+            Navigation.findNavController(view1).navigate(R.id.loginFragment2);
+            BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
+            bottomNavigationView.setVisibility(View.GONE);
         });
         return view;
     }
@@ -93,11 +85,7 @@ public class ProfiloFragment extends Fragment {
             Toast.makeText(context, "Credito caricato correttamente!", Toast.LENGTH_SHORT).show();
 
         });
-        builder.setNegativeButton("Cancella", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton("Cancella", (dialog, id) -> dialog.cancel());
 
         builder.create().show();
     }
