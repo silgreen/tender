@@ -67,7 +67,7 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
             super(itemView);
             tipoDrink = itemView.findViewById(R.id.textViewTipoDrinkFrullato);
             nomeDrink = itemView.findViewById(R.id.textViewNomeDrinkFrullato);
-            immagineDrink = itemView.findViewById(R.id.imageViewFrullato);
+            immagineDrink = itemView.findViewById(R.id.imageViewDrinkFrullato);
             descrizioneDrink = itemView.findViewById(R.id.textViewDescrizioneFrullato);
             costoDrink = itemView.findViewById(R.id.textViewCostoFrullato);
             venditeDrink = itemView.findViewById(R.id.textViewVenditeFrullato);

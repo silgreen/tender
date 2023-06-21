@@ -9,5 +9,5 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewHomeItem"
         android:layout_width="match_parent"
-        android:layout_height="638dp" />
+        android:layout_height="542dp" />
 </FrameLayout>

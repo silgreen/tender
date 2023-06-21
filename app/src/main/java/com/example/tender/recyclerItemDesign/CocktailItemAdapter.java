@@ -71,7 +71,7 @@ public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapte
             costoDrink = itemView.findViewById(R.id.textViewCostoCocktail);
             venditeDrink = itemView.findViewById(R.id.textViewVenditeCocktail);
             ingredientList = itemView.findViewById(R.id.textViewIngredientListCocktail);
-            immagineCocktail = itemView.findViewById(R.id.imageViewCocktail);
+            immagineCocktail = itemView.findViewById(R.id.imageViewDrinkCocktail);
 
             FloatingActionButton floatingActionButton = itemView.findViewById(R.id.floatingActionButtonAddCocktail);
             floatingActionButton.setOnClickListener(view -> {
