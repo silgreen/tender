@@ -42,7 +42,7 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
         holder.costo = drinkList.get(position).getCosto();
         holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f",holder.costo));
         holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
-        holder.immagineDrink.setImageResource(Images.randomImage());
+        holder.immagineDrink.setImageResource(drinkList.get(position).getImage());
         holder.ingredientList.setText(drinkList.get(position).ingredientListToString());
     }
 

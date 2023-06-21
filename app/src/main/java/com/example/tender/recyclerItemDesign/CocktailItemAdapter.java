@@ -41,7 +41,7 @@ public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapte
         holder.costo = drinkList.get(position).getCosto();
         holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f",holder.costo));
         holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
-        holder.immagineCocktail.setImageResource(Images.randomImage());
+        holder.immagineCocktail.setImageResource(drinkList.get(position).getImage());
         holder.ingredientList.setText(drinkList.get(position).ingredientListToString());
     }
 

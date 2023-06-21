@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.tender.activities.MainActivity;
 import com.example.tender.entities.Drink;
+import com.example.tender.entities.Images;
 import com.example.tender.entities.Ingredients;
 import com.example.tender.entities.User;
 
@@ -234,7 +235,7 @@ public class SocketClient {
             if(s!= null ){
                 String[] arr = s.split(";", 5);
                 if(arr.length == 1) break;
-                Drink drink = new Drink(arr[0],arr[1], Integer.parseInt(arr[2]),Float.parseFloat(arr[3]), Integer.parseInt(arr[4]));
+                Drink drink = new Drink(arr[0],arr[1], Integer.parseInt(arr[2]),Float.parseFloat(arr[3]), Integer.parseInt(arr[4]), Images.randomImage());
                 drinks.add(drink);
             }
         }

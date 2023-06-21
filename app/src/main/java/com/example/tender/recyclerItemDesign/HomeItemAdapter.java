@@ -41,7 +41,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         holder.costo = drinkList.get(position).getCosto();
         holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f", holder.costo));
         holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
-        holder.imageViewDrink.setImageResource(Images.randomImage());
+        holder.imageViewDrink.setImageResource(drinkList.get(position).getImage());
         holder.ingredientList.setText(drinkList.get(position).ingredientListToString());
 
     }

@@ -10,6 +10,8 @@ public class Drink {
     private String descrizione;
     private List<Ingredients> ingredientsList;
 
+    private int image;
+
     private int vendite;
     private float costo;
     public enum tipoDrink {Cocktail, Frullato};
@@ -17,12 +19,21 @@ public class Drink {
 
     public Drink(){}
 
-    public Drink(String nomeDrink, String descrizione, int vendite,float costo, int categoria) {
+    public Drink(String nomeDrink, String descrizione, int vendite,float costo, int categoria, int image) {
         this.nomeDrink = nomeDrink;
         this.descrizione = descrizione;
         this.vendite = vendite;
         this.costo = costo;
         this.categoria = tipoDrink.values()[categoria];
+        this.image = image;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     public int getVendite() {
