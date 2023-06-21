@@ -23,6 +23,8 @@ import java.util.List;
 
 public class TipoDrinkFragment extends Fragment {
     ViewPager2 viewPager2 ;
+    CocktailFragment cocktailFragment = new CocktailFragment();
+    FrullatoFragment frullatoFragment = new FrullatoFragment();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,8 +45,8 @@ public class TipoDrinkFragment extends Fragment {
     public void setViewPagerAdapter() {
         ViewPager2Adapter viewPager2Adapter = new ViewPager2Adapter(getActivity());
         ArrayList<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new CocktailFragment());
-        fragmentList.add(new FrullatoFragment());
+        fragmentList.add(cocktailFragment);
+        fragmentList.add(frullatoFragment);
         viewPager2Adapter.setData(fragmentList);
         viewPager2.setAdapter(viewPager2Adapter);
     }
