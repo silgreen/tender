@@ -39,18 +39,18 @@ public class SocketClient {
     private void initSocket() {
         if(socket == null) {
             try {
-                InetAddress serverAddress = InetAddress.getByName("10.0.2.2");//modificare ip
+                InetAddress serverAddress = InetAddress.getByName("20.107.204.150");//modificare ip
                 socket = new Socket();
-                SocketAddress socketAddress = new InetSocketAddress(serverAddress,9090);
-                socket.connect(socketAddress,2000);
+                SocketAddress socketAddress = new InetSocketAddress(serverAddress,8080);
+                socket.connect(socketAddress,5000);
                 writer = new PrintWriter(socket.getOutputStream(),true);
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
                 new Handler(Looper.getMainLooper()).post(() -> {
                     Toast.makeText(context, "connessione al server fallita", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(context, MainActivity.class);
-                    context.startActivity(intent);
+                    //Intent intent = new Intent(context, MainActivity.class);
+                    //context.startActivity(intent);
                 });
             }
         }
