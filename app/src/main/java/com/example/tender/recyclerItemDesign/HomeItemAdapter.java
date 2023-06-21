@@ -3,6 +3,7 @@ package com.example.tender.recyclerItemDesign;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tender.R;
 import com.example.tender.entities.Drink;
+import com.example.tender.entities.Images;
 import com.example.tender.entities.Order;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -39,7 +41,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         holder.costo = drinkList.get(position).getCosto();
         holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f", holder.costo));
         holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
-
+        holder.imageViewDrink.setImageResource(Images.randomImage());
         holder.ingredientList.setText(drinkList.get(position).ingredientListToString());
 
     }
@@ -57,6 +59,8 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         private final TextView venditeDrink;
         private final TextView tipoDrink;
         private final TextView ingredientList;
+
+        private final ImageView imageViewDrink;
         private float costo;
         public HomeItemHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +70,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
             costoDrink = itemView.findViewById(R.id.textViewCosto);
             venditeDrink = itemView.findViewById(R.id.textViewVendite);
             ingredientList = itemView.findViewById(R.id.textViewIngredientList);
+            imageViewDrink = itemView.findViewById(R.id.imageViewDrink1);
             FloatingActionButton floatingActionButton = itemView.findViewById(R.id.floatingActionButtonAdd);
             floatingActionButton.setOnClickListener(view -> {
                 Drink drink = new Drink();

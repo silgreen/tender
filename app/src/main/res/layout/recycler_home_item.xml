@@ -14,10 +14,11 @@
         android:id="@+id/textViewVendutiLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="156dp"
         android:layout_marginTop="8dp"
         android:text="@string/venduti"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewVendite"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewIngredientList" />
 
@@ -25,38 +26,39 @@
         android:id="@+id/textViewVendite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="4dp"
         android:text="Vendite"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCosto" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewIngredientList"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textViewCosto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Costo"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingActionButtonAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButtonAdd"
+        app:layout_constraintVertical_bias="0.026" />
 
     <TextView
         android:id="@+id/textViewDescrizione"
         android:layout_width="202dp"
         android:layout_height="30dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Descrizione"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAdd"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDrink1"
         app:layout_constraintTop_toBottomOf="@+id/textViewNomeDrink" />
 
     <TextView
@@ -64,23 +66,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="44dp"
         android:text="Tipo Drink"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAdd"
+        app:layout_constraintStart_toEndOf="@+id/textViewNomeDrink"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewNomeDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="88dp"
         android:layout_marginTop="16dp"
         android:text="nomeDrink"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTipoDrink"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,24 +89,37 @@
         android:id="@+id/floatingActionButtonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewIngredientList"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.121"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <TextView
         android:id="@+id/textViewIngredientList"
         android:layout_width="211dp"
         android:layout_height="36dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Ingredienti"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textViewCosto"
-        app:layout_constraintHorizontal_bias="0.553"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDrink1"
         app:layout_constraintTop_toBottomOf="@+id/textViewDescrizione" />
+
+    <ImageView
+        android:id="@+id/imageViewDrink1"
+        android:layout_width="67dp"
+        android:layout_height="101dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cocktail_png18" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

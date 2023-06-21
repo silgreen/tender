@@ -3,6 +3,8 @@ package com.example.tender.recyclerItemDesign;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tender.R;
 import com.example.tender.entities.Drink;
+import com.example.tender.entities.Images;
 import com.example.tender.entities.Order;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -39,7 +42,7 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
         holder.costo = drinkList.get(position).getCosto();
         holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f",holder.costo));
         holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
-
+        holder.immagineDrink.setImageResource(Images.randomImage());
         holder.ingredientList.setText(drinkList.get(position).ingredientListToString());
     }
 
@@ -56,13 +59,15 @@ public class FrullatoItemAdapter extends RecyclerView.Adapter<FrullatoItemAdapte
         private final TextView venditeDrink;
         private final TextView tipoDrink;
         private final TextView ingredientList;
+
+        private final ImageView immagineDrink;
         private float costo;
 
         public FrullatoItemHolder(@NonNull View itemView) {
             super(itemView);
             tipoDrink = itemView.findViewById(R.id.textViewTipoDrinkFrullato);
             nomeDrink = itemView.findViewById(R.id.textViewNomeDrinkFrullato);
-
+            immagineDrink = itemView.findViewById(R.id.imageViewFrullato);
             descrizioneDrink = itemView.findViewById(R.id.textViewDescrizioneFrullato);
             costoDrink = itemView.findViewById(R.id.textViewCostoFrullato);
             venditeDrink = itemView.findViewById(R.id.textViewVenditeFrullato);

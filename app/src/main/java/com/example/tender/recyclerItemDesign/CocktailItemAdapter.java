@@ -3,6 +3,7 @@ package com.example.tender.recyclerItemDesign;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tender.R;
 import com.example.tender.entities.Drink;
+import com.example.tender.entities.Images;
 import com.example.tender.entities.Order;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -39,7 +41,7 @@ public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapte
         holder.costo = drinkList.get(position).getCosto();
         holder.costoDrink.setText(String.format(Locale.getDefault(),"$%.2f",holder.costo));
         holder.venditeDrink.setText(String.format(Locale.getDefault(),"%d",drinkList.get(position).getVendite()));
-
+        holder.immagineCocktail.setImageResource(Images.randomImage());
         holder.ingredientList.setText(drinkList.get(position).ingredientListToString());
     }
 
@@ -57,6 +59,8 @@ public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapte
         private final TextView venditeDrink;
         private final TextView tipoDrink;
         private final TextView ingredientList;
+
+        private final ImageView immagineCocktail;
         private float costo;
 
         public CocktailItemHolder(@NonNull View itemView) {
@@ -67,6 +71,7 @@ public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapte
             costoDrink = itemView.findViewById(R.id.textViewCostoCocktail);
             venditeDrink = itemView.findViewById(R.id.textViewVenditeCocktail);
             ingredientList = itemView.findViewById(R.id.textViewIngredientListCocktail);
+            immagineCocktail = itemView.findViewById(R.id.imageViewCocktail);
 
             FloatingActionButton floatingActionButton = itemView.findViewById(R.id.floatingActionButtonAddCocktail);
             floatingActionButton.setOnClickListener(view -> {
