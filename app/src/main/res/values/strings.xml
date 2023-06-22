@@ -15,7 +15,7 @@
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
     <string name="compra_drink">Compra Drink</string>
-    <string name="totale_prezzo">Totale prezzo :</string>
+    <string name="totale_prezzo">Totale:</string>
     <string name="aggiungi_denaro">Aggiungi Denaro</string>
     <string name="logout">Logout</string>
     <string name="portafoglio">Portafoglio:</string>

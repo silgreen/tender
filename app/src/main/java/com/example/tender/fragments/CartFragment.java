@@ -37,7 +37,7 @@ public class CartFragment extends Fragment {
             actionBar.setTitle("Carrello");
         }
         textViewTotale = view.findViewById(R.id.textViewTotaleCosto);
-        totale = String.format(Locale.getDefault(),"%.2f",Order.getInstance().getTotale());
+        totale = String.format(Locale.getDefault(),"$%.2f",Order.getInstance().getTotale());
         textViewTotale.setText(totale);
 
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -54,7 +54,7 @@ public class CartFragment extends Fragment {
             if(!order.getDrinkList().isEmpty()) {
                 if(order.getTotale() < portafoglio) {
                     int size = order.getDrinkList().size();
-                    String totale = String.valueOf(order.getTotale());
+                    totale = String.format(Locale.getDefault(),"$%.2f",Order.getInstance().getTotale());
                     SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putFloat("portafoglio",portafoglio - order.getTotale());
