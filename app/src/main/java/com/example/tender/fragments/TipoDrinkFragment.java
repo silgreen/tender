@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -23,8 +22,8 @@ import java.util.List;
 
 public class TipoDrinkFragment extends Fragment {
     ViewPager2 viewPager2 ;
-    CocktailFragment cocktailFragment = new CocktailFragment();
-    FrullatoFragment frullatoFragment = new FrullatoFragment();
+    CocktailFragment cocktailFragment = CocktailFragment.newInstance(0);
+    FrullatoFragment frullatoFragment = FrullatoFragment.newInstance(1);
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,7 +32,7 @@ public class TipoDrinkFragment extends Fragment {
         if (actionBar != null) {
             actionBar.setTitle("Menu");
         }
-        TabLayout tabLayout = (TabLayout)view.findViewById(R.id.tab_layout);
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         viewPager2 = view.findViewById(R.id.viewPager2);
         List<String> titlesTab = new ArrayList<>();
         titlesTab.add("Cocktail");
@@ -43,7 +42,7 @@ public class TipoDrinkFragment extends Fragment {
         return view;
     }
     public void setViewPagerAdapter() {
-        ViewPager2Adapter viewPager2Adapter = new ViewPager2Adapter(getActivity());
+        ViewPager2Adapter viewPager2Adapter = new ViewPager2Adapter(this);
         ArrayList<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(cocktailFragment);
         fragmentList.add(frullatoFragment);
@@ -54,8 +53,8 @@ public class TipoDrinkFragment extends Fragment {
     public static class ViewPager2Adapter extends FragmentStateAdapter{
         private ArrayList<Fragment> fragments;
 
-        public ViewPager2Adapter(@NonNull FragmentActivity fragmentActivity) {
-            super(fragmentActivity);
+        public ViewPager2Adapter(@NonNull Fragment fragment) {
+            super(fragment);
         }
         public void setData(ArrayList<Fragment> fragments) {
             this.fragments = fragments;

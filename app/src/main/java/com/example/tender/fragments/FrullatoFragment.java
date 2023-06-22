@@ -21,6 +21,13 @@ import java.util.Comparator;
 import java.util.List;
 
 public class FrullatoFragment extends Fragment {
+    public static FrullatoFragment newInstance(int data) {
+        Bundle args = new Bundle();
+        FrullatoFragment fragment = new FrullatoFragment();
+        args.putInt("frullato",data);
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

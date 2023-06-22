@@ -21,6 +21,13 @@ import java.util.Comparator;
 import java.util.List;
 
 public class CocktailFragment extends Fragment {
+    public static CocktailFragment newInstance(int data) {
+        Bundle args = new Bundle();
+        CocktailFragment fragment = new CocktailFragment();
+        args.putInt("cocktail",data);
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
