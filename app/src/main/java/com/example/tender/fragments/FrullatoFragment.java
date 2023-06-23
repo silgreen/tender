@@ -44,7 +44,7 @@ public class FrullatoFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewFrullatoItem);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        listDrinks.sort(Comparator.comparingInt(Drink::getVendite).reversed());
+        //listDrinks.sort(Comparator.comparingInt(Drink::getVendite).reversed());
         recyclerView.setAdapter(new FrullatoItemAdapter(listDrinks));
         for (Drink d:listDrinks) {
             d.addIngredientList(listIngredient);

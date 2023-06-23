@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewHomeItem);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        listDrinks.sort(Comparator.comparingInt(Drink::getVendite).reversed());
+        //listDrinks.sort(Comparator.comparingInt(Drink::getVendite).reversed());
         recyclerView.setAdapter(new HomeItemAdapter(listDrinks));
 
 
