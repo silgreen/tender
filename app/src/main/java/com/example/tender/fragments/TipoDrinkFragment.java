@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
@@ -21,17 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TipoDrinkFragment extends Fragment {
-    ViewPager2 viewPager2 ;
-    CocktailFragment cocktailFragment = CocktailFragment.newInstance(0);
-    FrullatoFragment frullatoFragment = FrullatoFragment.newInstance(1);
+    private ViewPager2 viewPager2 ;
+    private final CocktailFragment cocktailFragment = CocktailFragment.newInstance();
+    private final FrullatoFragment frullatoFragment = FrullatoFragment.newInstance();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tipo_drink, container, false);
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("Menu");
-        }
+
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         viewPager2 = view.findViewById(R.id.viewPager2);
         List<String> titlesTab = new ArrayList<>();

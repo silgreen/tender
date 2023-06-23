@@ -1,7 +1,5 @@
 package com.example.tender.entities;
 
-import android.widget.ImageView;
-
 import com.example.tender.R;
 
 import java.util.ArrayList;

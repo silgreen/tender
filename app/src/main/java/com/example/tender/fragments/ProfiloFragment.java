@@ -2,7 +2,6 @@ package com.example.tender.fragments;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
@@ -15,8 +14,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -27,23 +24,21 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.Locale;
 
 public class ProfiloFragment extends Fragment {
-    private TextView textViewNomeUtente;
     private TextView textViewPortafoglio;
-    float portafoglio;
+    private float portafoglio;
+    private SharedPreferences.Editor editor;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profilo, container, false);
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("Profilo");
-        }
-        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        textViewNomeUtente = view.findViewById(R.id.textViewNomeUtenteProfilo);
+
+        SharedPreferences sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        TextView textViewNomeUtente = view.findViewById(R.id.textViewNomeUtenteProfilo);
         textViewPortafoglio = view.findViewById(R.id.textViewPortafoglio);
 
-        String username = preferences.getString("username","UTENTE");
-        portafoglio = preferences.getFloat("portafoglio",0.0f);
+        String username = sharedPreferences.getString("username","UTENTE");
+        portafoglio = sharedPreferences.getFloat("portafoglio",0.0f);
 
         textViewNomeUtente.setText(username);
         textViewPortafoglio.setText(String.format(Locale.getDefault(),"$%.2f",portafoglio));
@@ -51,8 +46,7 @@ public class ProfiloFragment extends Fragment {
         view.findViewById(R.id.buttonAddMoney).setOnClickListener(view12 -> showDialog(view12.getContext()));
 
         view.findViewById(R.id.buttonLogOut).setOnClickListener(view1 -> {
-            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
+
             editor.putBoolean("logged",false);
             editor.apply();
             Navigation.findNavController(view1).navigate(R.id.loginFragment2);
@@ -77,8 +71,7 @@ public class ProfiloFragment extends Fragment {
             float addDenaro = Float.parseFloat(text.getText().toString());
             socketClient.requestAggiungiDenaro(addDenaro);
             portafoglio += addDenaro;
-            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
+
             editor.putFloat("portafoglio",portafoglio);
             editor.apply();
             textViewPortafoglio.setText(String.format(Locale.getDefault(),"$%.2f",portafoglio));

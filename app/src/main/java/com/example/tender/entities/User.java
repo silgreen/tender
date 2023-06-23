@@ -3,8 +3,6 @@ package com.example.tender.entities;
 public class User {
 
     private String username;
-
-
     private String password;
     private float portafoglio;
 

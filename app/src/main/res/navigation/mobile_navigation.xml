@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/loginFragment2"
         android:name="com.example.tender.fragments.LoginFragment"
-        android:label="fragment_login"
+        android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment2_to_registerFragment"
@@ -18,12 +18,12 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.tender.fragments.RegisterFragment"
-        android:label="fragment_register"
+        android:label="Registrati"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.tender.fragments.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_loginFragment2"
@@ -33,16 +33,16 @@
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.tender.fragments.ProfiloFragment"
-        android:label="ProfiloFragment"
+        android:label="Profilo"
         tools:layout="@layout/fragment_profilo"/>
     <fragment
         android:id="@+id/navigation_carrello"
         android:name="com.example.tender.fragments.CartFragment"
-        android:label="CartFragment"
+        android:label="Carrello"
         tools:layout="@layout/fragment_cart"/>
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.example.tender.fragments.TipoDrinkFragment"
-        android:label="SearchFragment"
+        android:label="Menu"
         tools:layout="@layout/fragment_tipo_drink"/>
 </navigation>

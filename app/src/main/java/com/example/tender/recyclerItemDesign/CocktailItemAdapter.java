@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tender.R;
 import com.example.tender.entities.Drink;
-import com.example.tender.entities.Images;
 import com.example.tender.entities.Order;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -20,7 +19,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class CocktailItemAdapter extends RecyclerView.Adapter<CocktailItemAdapter.CocktailItemHolder> {
-    List<Drink> drinkList;
+    private final List<Drink> drinkList;
 
     public CocktailItemAdapter(List<Drink> drinkList){
         this.drinkList=drinkList;

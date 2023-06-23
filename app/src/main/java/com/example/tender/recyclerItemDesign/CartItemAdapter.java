@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartItemHolder> {
-    List<Drink> drinkList;
+    private final List<Drink> drinkList;
 
     public CartItemAdapter(List<Drink> drinkList){
         this.drinkList=drinkList;

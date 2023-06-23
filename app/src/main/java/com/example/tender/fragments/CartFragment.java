@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,21 +24,19 @@ import java.util.Locale;
 
 public class CartFragment extends Fragment {
     private TextView textViewTotale;
-    String totale="0.0";
-    float portafoglio;
+    private String totale="0.00";
+    private float portafoglio;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("Carrello");
-        }
+
         textViewTotale = view.findViewById(R.id.textViewTotaleCosto);
         totale = String.format(Locale.getDefault(),"$%.2f",Order.getInstance().getTotale());
         textViewTotale.setText(totale);
 
-        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences preferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
         portafoglio = preferences.getFloat("portafoglio",0.0f);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewCartItem);
@@ -55,13 +51,11 @@ public class CartFragment extends Fragment {
                 if(order.getTotale() < portafoglio) {
                     int size = order.getDrinkList().size();
                     totale = String.format(Locale.getDefault(),"$%.2f",Order.getInstance().getTotale());
-                    SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putFloat("portafoglio",portafoglio - order.getTotale());
                     editor.apply();
                     socketClient.startBuy(order.getTotale(), order.getDrinkList());
                     order.getDrinkList().clear();
-                    textViewTotale.setText(totale);
+                    textViewTotale.setText(R.string.zero);
                     adapter.notifyItemRangeRemoved(0, size);
                     Toast.makeText(getContext(), "Ordine andato a buon fine", Toast.LENGTH_SHORT).show();
                 }else {

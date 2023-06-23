@@ -1,20 +1,16 @@
 package com.example.tender.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.tender.R;
 import com.example.tender.communication.SocketClient;
@@ -22,7 +18,6 @@ import com.example.tender.entities.User;
 
 public class LoginFragment extends Fragment {
 
-    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,10 +25,7 @@ public class LoginFragment extends Fragment {
         EditText usernameEditText = view.findViewById(R.id.usernameEditText);
         EditText passwordEditText = view.findViewById(R.id.passwordEditText);
         SocketClient socketClient = new SocketClient(getContext());
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("Login");
-        }
+
         view.findViewById(R.id.loginButton).setOnClickListener(view1 -> {
             String usernameString = usernameEditText.getText().toString();
             String passwordString = passwordEditText.getText().toString();
@@ -41,7 +33,7 @@ public class LoginFragment extends Fragment {
             user.setUsername(usernameString);
             user.setPassword(passwordString);
             if(!usernameString.isEmpty() && !passwordString.isEmpty() && socketClient.requestLogin(user)) {
-                SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences preferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("logged",true);
                 editor.putString("username",user.getUsername());

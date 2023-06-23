@@ -1,15 +1,11 @@
 package com.example.tender.communication;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.example.tender.activities.MainActivity;
 import com.example.tender.entities.Drink;
 import com.example.tender.entities.Images;
 import com.example.tender.entities.Ingredients;
@@ -48,11 +44,7 @@ public class SocketClient {
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    Toast.makeText(context, "connessione al server fallita", Toast.LENGTH_SHORT).show();
-                    //Intent intent = new Intent(context, MainActivity.class);
-                    //context.startActivity(intent);
-                });
+                new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(context, "connessione al server fallita", Toast.LENGTH_SHORT).show());
             }
         }
     }
@@ -107,17 +99,17 @@ public class SocketClient {
         writer.println(HOMEPAGE);
     }
 
-    public void retrieveCocktail() {
+    public void requestCocktail() {
         String COCKTAIL = "cocktail";
         writer.println(COCKTAIL);
     }
 
-    public void retrieveFrullati() {
+    public void requestFrullati() {
         String FRULLATO = "frullato";
         writer.println(FRULLATO);
     }
 
-    public void retrieveIngredienti(){
+    public void requestIngredienti(){
         String INGREDIENTI = "ingredienti";
         writer.println(INGREDIENTI);
     }
@@ -273,7 +265,7 @@ public class SocketClient {
                 if(checkResponseOK()){
                     requestHomepage();
                     drinks.addAll(deserializeDrinks());
-                    retrieveIngredienti();
+                    requestIngredienti();
                     ingredients.addAll(deserializeIngredients());
 
                 }
@@ -295,9 +287,9 @@ public class SocketClient {
             if(socket.isConnected()){
                 sendUsername();
                 if(checkResponseOK()){
-                    retrieveCocktail();
+                    requestCocktail();
                     drinks.addAll(deserializeDrinks());
-                    retrieveIngredienti();
+                    requestIngredienti();
                     ingredients.addAll(deserializeIngredients());
                 }
             }
@@ -318,9 +310,9 @@ public class SocketClient {
             if(socket.isConnected()){
                 sendUsername();
                 if(checkResponseOK()){
-                    retrieveFrullati();
+                    requestFrullati();
                     drinks.addAll(deserializeDrinks());
-                    retrieveIngredienti();
+                    requestIngredienti();
                     ingredients.addAll(deserializeIngredients());
                 }
             }
