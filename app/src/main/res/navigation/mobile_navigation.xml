@@ -8,13 +8,7 @@
         android:id="@+id/loginFragment2"
         android:name="com.example.tender.fragments.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment2_to_registerFragment"
-            app:destination="@id/registerFragment"
-            app:popUpTo="@id/loginFragment2"
-            app:popUpToInclusive="false" />
-    </fragment>
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.tender.fragments.RegisterFragment"
@@ -24,12 +18,7 @@
         android:id="@+id/navigation_home"
         android:name="com.example.tender.fragments.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_loginFragment2"
-            app:destination="@id/loginFragment2"
-            app:popUpTo="@id/navigation_home" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.tender.fragments.ProfiloFragment"

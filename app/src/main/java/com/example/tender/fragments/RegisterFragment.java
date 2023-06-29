@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -37,6 +38,13 @@ public class RegisterFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.loginFragment2);
                 }else
                     Toast.makeText(getContext(), "Username già esistente", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Navigation.findNavController(view).navigate(R.id.loginFragment2);
             }
         });
 

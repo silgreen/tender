@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -52,6 +53,12 @@ public class ProfiloFragment extends Fragment {
             Navigation.findNavController(view1).navigate(R.id.loginFragment2);
             BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
             bottomNavigationView.setVisibility(View.GONE);
+        });
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+            }
         });
         return view;
     }

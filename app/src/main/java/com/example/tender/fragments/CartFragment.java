@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tender.R;
 import com.example.tender.communication.SocketClient;
+import com.example.tender.entities.Drink;
 import com.example.tender.entities.Order;
 import com.example.tender.recyclerItemDesign.CartItemAdapter;
 
+import java.util.List;
 import java.util.Locale;
 
 public class CartFragment extends Fragment {
@@ -47,20 +50,28 @@ public class CartFragment extends Fragment {
 
         view.findViewById(R.id.buttonBuy).setOnClickListener(view1 -> {
             Order order = Order.getInstance();
-            if(!order.getDrinkList().isEmpty()) {
-                if(order.getTotale() < portafoglio) {
-                    int size = order.getDrinkList().size();
-                    totale = String.format(Locale.getDefault(),"$%.2f",Order.getInstance().getTotale());
-                    editor.putFloat("portafoglio",portafoglio - order.getTotale());
+            List<Drink> drinkList = order.getDrinkList();
+            if(!drinkList.isEmpty()) {
+                float totaleCarrello = order.getTotale();
+                if(totaleCarrello <= portafoglio) {
+                    int size = drinkList.size();
+                    totale = String.format(Locale.getDefault(),"$%.2f",totaleCarrello);
+                    editor.putFloat("portafoglio",portafoglio - totaleCarrello);
                     editor.apply();
-                    socketClient.startBuy(order.getTotale(), order.getDrinkList());
-                    order.getDrinkList().clear();
+                    socketClient.startBuy(totaleCarrello, drinkList);
+                    drinkList.clear();
                     textViewTotale.setText(R.string.zero);
                     adapter.notifyItemRangeRemoved(0, size);
                     Toast.makeText(getContext(), "Ordine andato a buon fine", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(getContext(), "Soldi insufficienti", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
             }
         });
         return view;

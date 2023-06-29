@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -46,6 +47,12 @@ public class LoginFragment extends Fragment {
         });
         view.findViewById(R.id.registratiLabel).setOnClickListener(
                 v -> Navigation.findNavController(view).navigate(R.id.registerFragment));
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+            }
+        });
         return view;
     }
 }
